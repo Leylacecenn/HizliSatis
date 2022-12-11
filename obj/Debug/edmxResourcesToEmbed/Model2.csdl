@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hizlisatisModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Gider">
+    <Key>
+      <PropertyRef Name="GiderId" />
+    </Key>
+    <Property Name="GiderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GiderAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Toplam" Type="Decimal" Precision="19" Scale="4" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciId" />
+    </Key>
+    <Property Name="KullaniciId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Satislar">
+    <Key>
+      <PropertyRef Name="SatisId" />
+    </Key>
+    <Property Name="SatisId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunId" Type="Int32" />
+    <Property Name="Fiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="OdemeTuru" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tarih" Type="DateTime" Precision="0" />
+    <Property Name="Toplam" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Urunler" Relationship="Self.FK_Satislar_Urunler" FromRole="Satislar" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="UrunGruplari">
+    <Key>
+      <PropertyRef Name="UrunGrupId" />
+    </Key>
+    <Property Name="UrunGrupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunGrup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Urunlers" Relationship="Self.FK_Urunler_UrunGruplari" FromRole="UrunGruplari" ToRole="Urunler" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UrunAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AlisFiyati" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="SatisFiyat" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Gorsel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Kdv" Type="Double" />
+    <Property Name="UretimTarihi" Type="DateTime" Precision="0" />
+    <Property Name="Rafomru" Type="DateTime" Precision="0" />
+    <Property Name="GrupId" Type="Int32" />
+    <NavigationProperty Name="Satislars" Relationship="Self.FK_Satislar_Urunler" FromRole="Urunler" ToRole="Satislar" />
+    <NavigationProperty Name="UrunGruplari" Relationship="Self.FK_Urunler_UrunGruplari" FromRole="Urunler" ToRole="UrunGruplari" />
+  </EntityType>
+  <Association Name="FK_Satislar_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+    <End Role="Satislar" Type="Self.Satislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="Satislar">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_UrunGruplari">
+    <End Role="UrunGruplari" Type="Self.UrunGruplari" Multiplicity="0..1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UrunGruplari">
+        <PropertyRef Name="UrunGrupId" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="GrupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="hizlisatisEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Giders" EntityType="Self.Gider" />
+    <EntitySet Name="Kullanicilars" EntityType="Self.Kullanicilar" />
+    <EntitySet Name="Satislars" EntityType="Self.Satislar" />
+    <EntitySet Name="UrunGruplaris" EntityType="Self.UrunGruplari" />
+    <EntitySet Name="Urunlers" EntityType="Self.Urunler" />
+    <AssociationSet Name="FK_Satislar_Urunler" Association="Self.FK_Satislar_Urunler">
+      <End Role="Urunler" EntitySet="Urunlers" />
+      <End Role="Satislar" EntitySet="Satislars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_UrunGruplari" Association="Self.FK_Urunler_UrunGruplari">
+      <End Role="UrunGruplari" EntitySet="UrunGruplaris" />
+      <End Role="Urunler" EntitySet="Urunlers" />
+    </AssociationSet>
+    <FunctionImport Name="gunlukciro" ReturnType="Collection(hizlisatisModel1.gunlukciro_Result)">
+      <Parameter Name="tarih" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="tariharasisatisciro" ReturnType="Collection(hizlisatisModel1.tariharasisatisciro_Result)">
+      <Parameter Name="tarih1" Mode="In" Type="DateTime" />
+      <Parameter Name="tarih2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="tariharasisatislar" ReturnType="Collection(hizlisatisModel1.tariharasisatislar_Result)">
+      <Parameter Name="tarih1" Mode="In" Type="DateTime" />
+      <Parameter Name="tarih2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="gunlukciro_Result">
+    <Property Type="String" Name="date" Nullable="true" MaxLength="4000" />
+    <Property Type="Decimal" Name="ciro" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="tariharasisatisciro_Result">
+    <Property Type="String" Name="date" Nullable="true" MaxLength="4000" />
+    <Property Type="Decimal" Name="ciro" Nullable="true" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="tariharasisatislar_Result">
+    <Property Type="Int32" Name="SatisId" Nullable="false" />
+    <Property Type="Int32" Name="UrunId" Nullable="true" />
+    <Property Type="Decimal" Name="Fiyat" Nullable="true" Precision="19" />
+    <Property Type="String" Name="OdemeTuru" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="Tarih" Nullable="true" Precision="16" />
+    <Property Type="Decimal" Name="Toplam" Nullable="true" Precision="19" />
+  </ComplexType>
+</Schema>

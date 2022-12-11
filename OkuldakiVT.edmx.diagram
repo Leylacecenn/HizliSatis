@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="97c2b43a0ef34ddabb811533e665cd7e" Name="Diagram1">
+        <EntityTypeShape EntityType="hizlisatisModel1.Gider" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hizlisatisModel1.Kullanicilar" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hizlisatisModel1.Satislar" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="hizlisatisModel1.SatisListesi" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hizlisatisModel1.UrunGruplari" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="hizlisatisModel1.Urunler" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="hizlisatisModel1.FK_SatisListesi_Satislar" ManuallyRouted="false" />
+        <AssociationConnector Association="hizlisatisModel1.FK_SatisListesi_Urunler" ManuallyRouted="false" />
+        <AssociationConnector Association="hizlisatisModel1.FK_Urunler_UrunGruplari" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

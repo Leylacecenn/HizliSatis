@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hizlisatisModelStoreContainer" CdmEntityContainer="hizlisatisEntities2">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="hizlisatisModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="hizlisatisModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="hizlisatisModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="hizlisatisModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="hizlisatisModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="hizlisatisModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="hizlisatisModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="ikitariharasisatistoplami" FunctionName="hizlisatisModel.Store.ikitariharasisatistoplami" />
+    <FunctionImportMapping FunctionImportName="ikitariharasiSatislar" FunctionName="hizlisatisModel.Store.ikitariharasiSatislar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel.ikitariharasiSatislar_Result">
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+          <ScalarProperty Name="OdemeTuru" ColumnName="OdemeTuru" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+          <ScalarProperty Name="ToplamKDV" ColumnName="ToplamKDV" />
+          <ScalarProperty Name="NetToplam" ColumnName="NetToplam" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ikitariharasiSatislarToplami" FunctionName="hizlisatisModel.Store.ikitariharasiSatislarToplami" />
+    <FunctionImportMapping FunctionImportName="tarihigecenler" FunctionName="hizlisatisModel.Store.tarihigecenler">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel.tarihigecenler_Result">
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="AlisFiyati" ColumnName="AlisFiyati" />
+          <ScalarProperty Name="SatisFiyat" ColumnName="SatisFiyat" />
+          <ScalarProperty Name="Gorsel" ColumnName="Gorsel" />
+          <ScalarProperty Name="Kdv" ColumnName="Kdv" />
+          <ScalarProperty Name="UretimTarihi" ColumnName="UretimTarihi" />
+          <ScalarProperty Name="Rafomru" ColumnName="Rafomru" />
+          <ScalarProperty Name="GrupId" ColumnName="GrupId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="Giders">
+      <EntityTypeMapping TypeName="hizlisatisModel.Gider">
+        <MappingFragment StoreEntitySet="Gider">
+          <ScalarProperty Name="Toplam" ColumnName="Toplam" />
+          <ScalarProperty Name="GiderAdi" ColumnName="GiderAdi" />
+          <ScalarProperty Name="GiderId" ColumnName="GiderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanicilars">
+      <EntityTypeMapping TypeName="hizlisatisModel.Kullanicilar">
+        <MappingFragment StoreEntitySet="Kullanicilar">
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Satislars">
+      <EntityTypeMapping TypeName="hizlisatisModel.Satislar">
+        <MappingFragment StoreEntitySet="Satislar">
+          <ScalarProperty Name="NetToplam" ColumnName="NetToplam" />
+          <ScalarProperty Name="ToplamKDV" ColumnName="ToplamKDV" />
+          <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="OdemeTuru" ColumnName="OdemeTuru" />
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SatisListesis">
+      <EntityTypeMapping TypeName="hizlisatisModel.SatisListesi">
+        <MappingFragment StoreEntitySet="SatisListesi">
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="NetTutar" ColumnName="NetTutar" />
+          <ScalarProperty Name="KdvTutari" ColumnName="KdvTutari" />
+          <ScalarProperty Name="BirimToplamTutar" ColumnName="BirimToplamTutar" />
+          <ScalarProperty Name="Kdv" ColumnName="Kdv" />
+          <ScalarProperty Name="Birimfiyat" ColumnName="Birimfiyat" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="SatislistID" ColumnName="SatislistID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="hizlisatisModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UrunGruplaris">
+      <EntityTypeMapping TypeName="hizlisatisModel.UrunGruplari">
+        <MappingFragment StoreEntitySet="UrunGruplari">
+          <ScalarProperty Name="UrunGrup" ColumnName="UrunGrup" />
+          <ScalarProperty Name="UrunGrupId" ColumnName="UrunGrupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urunlers">
+      <EntityTypeMapping TypeName="hizlisatisModel.Urunler">
+        <MappingFragment StoreEntitySet="Urunler">
+          <ScalarProperty Name="GrupId" ColumnName="GrupId" />
+          <ScalarProperty Name="Rafomru" ColumnName="Rafomru" />
+          <ScalarProperty Name="UretimTarihi" ColumnName="UretimTarihi" />
+          <ScalarProperty Name="Kdv" ColumnName="Kdv" />
+          <ScalarProperty Name="Gorsel" ColumnName="Gorsel" />
+          <ScalarProperty Name="SatisFiyat" ColumnName="SatisFiyat" />
+          <ScalarProperty Name="AlisFiyati" ColumnName="AlisFiyati" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="TARIHsatisListesi" FunctionName="hizlisatisModel.Store.TARIHsatisListesi">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel.TARIHsatisListesi_Result">
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+          <ScalarProperty Name="OdemeTuru" ColumnName="OdemeTuru" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="ToplamTutar" ColumnName="ToplamTutar" />
+          <ScalarProperty Name="ToplamKDV" ColumnName="ToplamKDV" />
+          <ScalarProperty Name="NetToplam" ColumnName="NetToplam" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TARIHsatisListesiToplami" FunctionName="hizlisatisModel.Store.TARIHsatisListesiToplami" />
+    <FunctionImportMapping FunctionImportName="TARIHsatisListesiGider" FunctionName="hizlisatisModel.Store.TARIHsatisListesiGider" />
+    <FunctionImportMapping FunctionImportName="SatisIDBySatisListesi" FunctionName="hizlisatisModel.Store.SatisIDBySatisListesi">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel.SatisIDBySatisListesi_Result">
+          <ScalarProperty Name="SatislistID" ColumnName="SatislistID" />
+          <ScalarProperty Name="UrunID" ColumnName="UrunID" />
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+          <ScalarProperty Name="Miktar" ColumnName="Miktar" />
+          <ScalarProperty Name="Birimfiyat" ColumnName="Birimfiyat" />
+          <ScalarProperty Name="Kdv" ColumnName="Kdv" />
+          <ScalarProperty Name="BirimToplamTutar" ColumnName="BirimToplamTutar" />
+          <ScalarProperty Name="KdvTutari" ColumnName="KdvTutari" />
+          <ScalarProperty Name="NetTutar" ColumnName="NetTutar" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="TARIHIGecenUrunListesi" FunctionName="hizlisatisModel.Store.TARIHIGecenUrunListesi">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel.TARIHIGecenUrunListesi_Result">
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="AlisFiyati" ColumnName="AlisFiyati" />
+          <ScalarProperty Name="SatisFiyat" ColumnName="SatisFiyat" />
+          <ScalarProperty Name="Gorsel" ColumnName="Gorsel" />
+          <ScalarProperty Name="Kdv" ColumnName="Kdv" />
+          <ScalarProperty Name="UretimTarihi" ColumnName="UretimTarihi" />
+          <ScalarProperty Name="Rafomru" ColumnName="Rafomru" />
+          <ScalarProperty Name="GrupId" ColumnName="GrupId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

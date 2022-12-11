@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="hizlisatisModel1StoreContainer" CdmEntityContainer="hizlisatisEntities4">
+    <EntitySetMapping Name="Giders">
+      <EntityTypeMapping TypeName="hizlisatisModel1.Gider">
+        <MappingFragment StoreEntitySet="Gider">
+          <ScalarProperty Name="GiderId" ColumnName="GiderId" />
+          <ScalarProperty Name="GiderAdi" ColumnName="GiderAdi" />
+          <ScalarProperty Name="Toplam" ColumnName="Toplam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kullanicilars">
+      <EntityTypeMapping TypeName="hizlisatisModel1.Kullanicilar">
+        <MappingFragment StoreEntitySet="Kullanicilar">
+          <ScalarProperty Name="KullaniciId" ColumnName="KullaniciId" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Satislars">
+      <EntityTypeMapping TypeName="hizlisatisModel1.Satislar">
+        <MappingFragment StoreEntitySet="Satislar">
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+          <ScalarProperty Name="OdemeTuru" ColumnName="OdemeTuru" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Toplam" ColumnName="Toplam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UrunGruplaris">
+      <EntityTypeMapping TypeName="hizlisatisModel1.UrunGruplari">
+        <MappingFragment StoreEntitySet="UrunGruplari">
+          <ScalarProperty Name="UrunGrupId" ColumnName="UrunGrupId" />
+          <ScalarProperty Name="UrunGrup" ColumnName="UrunGrup" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Urunlers">
+      <EntityTypeMapping TypeName="hizlisatisModel1.Urunler">
+        <MappingFragment StoreEntitySet="Urunler">
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="UrunAdi" ColumnName="UrunAdi" />
+          <ScalarProperty Name="AlisFiyati" ColumnName="AlisFiyati" />
+          <ScalarProperty Name="SatisFiyat" ColumnName="SatisFiyat" />
+          <ScalarProperty Name="Gorsel" ColumnName="Gorsel" />
+          <ScalarProperty Name="Kdv" ColumnName="Kdv" />
+          <ScalarProperty Name="UretimTarihi" ColumnName="UretimTarihi" />
+          <ScalarProperty Name="Rafomru" ColumnName="Rafomru" />
+          <ScalarProperty Name="GrupId" ColumnName="GrupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="gunlukciro" FunctionName="hizlisatisModel1.Store.gunlukciro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel1.gunlukciro_Result">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="ciro" ColumnName="ciro" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tariharasisatisciro" FunctionName="hizlisatisModel1.Store.tariharasisatisciro">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel1.tariharasisatisciro_Result">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="ciro" ColumnName="ciro" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="tariharasisatislar" FunctionName="hizlisatisModel1.Store.tariharasisatislar">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="hizlisatisModel1.tariharasisatislar_Result">
+          <ScalarProperty Name="SatisId" ColumnName="SatisId" />
+          <ScalarProperty Name="UrunId" ColumnName="UrunId" />
+          <ScalarProperty Name="Fiyat" ColumnName="Fiyat" />
+          <ScalarProperty Name="OdemeTuru" ColumnName="OdemeTuru" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+          <ScalarProperty Name="Toplam" ColumnName="Toplam" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

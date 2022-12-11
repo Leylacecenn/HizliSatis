@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hizlisatisModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Gider">
+    <Key>
+      <PropertyRef Name="GiderId" />
+    </Key>
+    <Property Name="GiderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GiderAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Toplam" Type="money" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciId" />
+    </Key>
+    <Property Name="KullaniciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Satislar">
+    <Key>
+      <PropertyRef Name="SatisId" />
+    </Key>
+    <Property Name="SatisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunId" Type="int" />
+    <Property Name="Fiyat" Type="money" />
+    <Property Name="OdemeTuru" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tarih" Type="smalldatetime" />
+    <Property Name="Toplam" Type="money" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'hizlisatis.dbo.SatisListesi' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SatisListesi">
+          <Property Name="SatisId" Type="int" />
+          <Property Name="UrunID" Type="int" />
+        </EntityType>-->
+  <EntityType Name="UrunGruplari">
+    <Key>
+      <PropertyRef Name="UrunGrupId" />
+    </Key>
+    <Property Name="UrunGrupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunGrup" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlisFiyati" Type="money" />
+    <Property Name="SatisFiyat" Type="money" />
+    <Property Name="Gorsel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kdv" Type="float" />
+    <Property Name="UretimTarihi" Type="date" />
+    <Property Name="Rafomru" Type="date" />
+    <Property Name="GrupId" Type="int" />
+  </EntityType>
+  <Association Name="FK_Satislar_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+    <End Role="Satislar" Type="Self.Satislar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="Satislar">
+        <PropertyRef Name="UrunId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_UrunGruplari">
+    <End Role="UrunGruplari" Type="Self.UrunGruplari" Multiplicity="0..1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UrunGruplari">
+        <PropertyRef Name="UrunGrupId" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="GrupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="gunlukciro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="tariharasisatisciro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih1" Type="datetime" Mode="In" />
+    <Parameter Name="tarih2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="tariharasisatislar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih1" Type="datetime" Mode="In" />
+    <Parameter Name="tarih2" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="hizlisatisModel1StoreContainer">
+    <EntitySet Name="Gider" EntityType="Self.Gider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Satislar" EntityType="Self.Satislar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrunGruplari" EntityType="Self.UrunGruplari" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Satislar_Urunler" Association="Self.FK_Satislar_Urunler">
+      <End Role="Urunler" EntitySet="Urunler" />
+      <End Role="Satislar" EntitySet="Satislar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_UrunGruplari" Association="Self.FK_Urunler_UrunGruplari">
+      <End Role="UrunGruplari" EntitySet="UrunGruplari" />
+      <End Role="Urunler" EntitySet="Urunler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

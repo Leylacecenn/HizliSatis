@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hizlisatisModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Gider">
+    <Key>
+      <PropertyRef Name="GiderId" />
+    </Key>
+    <Property Name="GiderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GiderAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Toplam" Type="money" />
+  </EntityType>
+  <EntityType Name="Kullanicilar">
+    <Key>
+      <PropertyRef Name="KullaniciId" />
+    </Key>
+    <Property Name="KullaniciId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sifre" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Satislar">
+    <Key>
+      <PropertyRef Name="SatisId" />
+    </Key>
+    <Property Name="SatisId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OdemeTuru" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tarih" Type="smalldatetime" />
+    <Property Name="ToplamTutar" Type="float" />
+    <Property Name="ToplamKDV" Type="float" />
+    <Property Name="NetToplam" Type="float" />
+  </EntityType>
+  <EntityType Name="SatisListesi">
+    <Key>
+      <PropertyRef Name="SatislistID" />
+    </Key>
+    <Property Name="SatislistID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunID" Type="int" />
+    <Property Name="SatisId" Type="int" />
+    <Property Name="Miktar" Type="int" />
+    <Property Name="Birimfiyat" Type="float" />
+    <Property Name="Kdv" Type="float" />
+    <Property Name="BirimToplamTutar" Type="float" />
+    <Property Name="KdvTutari" Type="float" />
+    <Property Name="NetTutar" Type="float" />
+    <Property Name="Tarih" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="UrunGruplari">
+    <Key>
+      <PropertyRef Name="UrunGrupId" />
+    </Key>
+    <Property Name="UrunGrupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunGrup" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Urunler">
+    <Key>
+      <PropertyRef Name="UrunId" />
+    </Key>
+    <Property Name="UrunId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UrunAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlisFiyati" Type="float" />
+    <Property Name="SatisFiyat" Type="float" />
+    <Property Name="Gorsel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Kdv" Type="float" />
+    <Property Name="UretimTarihi" Type="date" />
+    <Property Name="Rafomru" Type="date" />
+    <Property Name="GrupId" Type="int" />
+  </EntityType>
+  <Association Name="FK_SatisListesi_Satislar">
+    <End Role="Satislar" Type="Self.Satislar" Multiplicity="0..1" />
+    <End Role="SatisListesi" Type="Self.SatisListesi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Satislar">
+        <PropertyRef Name="SatisId" />
+      </Principal>
+      <Dependent Role="SatisListesi">
+        <PropertyRef Name="SatisId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SatisListesi_Urunler">
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="0..1" />
+    <End Role="SatisListesi" Type="Self.SatisListesi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Urunler">
+        <PropertyRef Name="UrunId" />
+      </Principal>
+      <Dependent Role="SatisListesi">
+        <PropertyRef Name="UrunID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Urunler_UrunGruplari">
+    <End Role="UrunGruplari" Type="Self.UrunGruplari" Multiplicity="0..1" />
+    <End Role="Urunler" Type="Self.Urunler" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UrunGruplari">
+        <PropertyRef Name="UrunGrupId" />
+      </Principal>
+      <Dependent Role="Urunler">
+        <PropertyRef Name="GrupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ikitariharasiSatislar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih1" Type="datetime" Mode="In" />
+    <Parameter Name="tarih2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="ikitariharasiSatislarToplami" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih1" Type="datetime" Mode="In" />
+    <Parameter Name="tarih2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="ikitariharasisatistoplami" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih1" Type="datetime" Mode="In" />
+    <Parameter Name="tarih2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="SatisIDBySatisListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="SatisId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="TARIHIGecenUrunListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="TARIHsatisListesi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih1" Type="datetime" Mode="In" />
+    <Parameter Name="tarih2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TARIHsatisListesiGider" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih1" Type="datetime" Mode="In" />
+    <Parameter Name="tarih2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="TARIHsatisListesiToplami" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tarih1" Type="datetime" Mode="In" />
+    <Parameter Name="tarih2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="tarihigecenler" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="hizlisatisModel1StoreContainer">
+    <EntitySet Name="Gider" EntityType="Self.Gider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanicilar" EntityType="Self.Kullanicilar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Satislar" EntityType="Self.Satislar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SatisListesi" EntityType="Self.SatisListesi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UrunGruplari" EntityType="Self.UrunGruplari" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Urunler" EntityType="Self.Urunler" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_SatisListesi_Satislar" Association="Self.FK_SatisListesi_Satislar">
+      <End Role="Satislar" EntitySet="Satislar" />
+      <End Role="SatisListesi" EntitySet="SatisListesi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SatisListesi_Urunler" Association="Self.FK_SatisListesi_Urunler">
+      <End Role="Urunler" EntitySet="Urunler" />
+      <End Role="SatisListesi" EntitySet="SatisListesi" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Urunler_UrunGruplari" Association="Self.FK_Urunler_UrunGruplari">
+      <End Role="UrunGruplari" EntitySet="UrunGruplari" />
+      <End Role="Urunler" EntitySet="Urunler" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
